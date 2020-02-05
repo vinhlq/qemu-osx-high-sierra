@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Set to the name of your tap device
+TAP=tap1
+
+check_tap() {
+    if ip link show | grep $TAP > /dev/null; then
+        return
+    else
+        exit 1
+    fi
+}
+
+enable_ip_forward() {
+    echo 1 | dd of=/proc/sys/net/ipv4/ip_forward > /dev/null
+}
+
+start_tap() {
+    check_tap
+
+    # Flush old config and set new config
+    ip addr flush dev $TAP
+    ip link set $TAP up promisc on
+    ip addr add 192.168.66.1/24 dev $TAP
+}
+
+start_tap

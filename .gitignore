@@ -1,0 +1,16 @@
+.*
+*.key
+*.crt
+*.cert
+*.pem
+*.img
+*.iso
+*.dmg
+/**/*.img
+/**/*.iso
+/**/*.dmg
+*.old
+/**/dist
+/**/node_modules
+/**/config/*.json
+!/.gitignore

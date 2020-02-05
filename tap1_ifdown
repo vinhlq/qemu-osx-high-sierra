@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# tap device name
+TAP=tap1
+
+ip link set $TAP down
+ip addr flush dev $TAP
+
+echo 0 | dd of=/proc/sys/net/ipv4/ip_forward > /dev/null && echo "ip_forward disabled"
